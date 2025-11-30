@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\SongController;
+use App\Http\Controllers\GetRandomSongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('song', SongController::class);
+Route::get('RandomSong', [GetRandomSongController::class, 'RandomSong'])->name('RandomSong');

@@ -4,9 +4,8 @@
      
    </h1>
 
-   <form action="{{route('song.index') }}" method="POST'>
+   <form action="{{route('RandomSong') }}" method="Get">
     @csrf
-   @method('POST')
                        
        <button type="submit">listen song</button>
    

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Song extends Model
+class RandomSong extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'name_song', 'body'];
+    protected $fillable = ['name', 'singer_name', 'quote'];
 }
