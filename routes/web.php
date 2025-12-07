@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('RandomSong', [GetRandomSongController::class, 'RandomSong'])->name('RandomSong');
+Route::get('generate', GetRandomSongController::class)->name('generate');

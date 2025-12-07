@@ -4,7 +4,7 @@
      
    </h1>
 
-   <form action="{{route('RandomSong') }}" method="Get">
+   <form action="{{route('generate') }}" method="Get">
     @csrf
                        
        <button type="submit">listen song</button>

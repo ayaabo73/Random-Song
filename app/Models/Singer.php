@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RandomSong extends Model
+class Singer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'singer_name', 'quote'];
+    protected $fillable = ['name'];
+
+    public function song()
+    {
+
+        return $this->hasMany(Song::class);
+    }
 }

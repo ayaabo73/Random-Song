@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            RandomSong::class,
+            RandomSongSeeder::class,
+
         ]);
     }
 }

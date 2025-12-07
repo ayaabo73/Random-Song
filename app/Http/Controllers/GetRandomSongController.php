@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RandomSong;
+use App\Models\Quote;
+use App\Models\Song;
 
 class GetRandomSongController extends Controller
 {
-    public function RandomSong()
+    public function __invoke()
     {
-        $song = RandomSong::inRandomOrder()->first();
+        $quote = Quote:: inRandomOrder()->first();
 
-        return view('RandomSong', compact('song'));
+        return view('RandomSong', compact('quote'));
     }
 }
