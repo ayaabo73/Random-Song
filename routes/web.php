@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\FilterBySinger;
 use App\Http\Controllers\GetRandomSongController;
+use App\Models\Singer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $singers= Singer::all();
+    return view('welcome',compact('singers'));
 });
 Route::get('generate', GetRandomSongController::class)->name('generate');
+Route::get('filtering', FilterBySinger::class)->name('filtering');

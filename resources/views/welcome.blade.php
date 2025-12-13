@@ -10,5 +10,16 @@
        <button type="submit">listen song</button>
    
    </form>
-
+   <form action="{{route('filtering') }}" method="Get">
+     
+                <select name="singer_id" >
+               <option value=" ">اختر مطربك المفضل او اترك فارغا ودع الامر لنا
+               </option>
+             @foreach ($singers as $singer)
+            <option value="{{ $singer->id }}" request={{'singer_id'}}>{{$singer->name}}
+             </option>
+             @endforeach
+                </select>
+                <button type="submit">filtering</button>
+     </form>
 </div>
