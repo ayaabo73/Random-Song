@@ -17,53 +17,46 @@ class RandomSongSeeder extends Seeder
 
             [
                 'name' => 'فيروز ',
-                'songs' => 
-                [
+                'songs' => [
                     ['name' => 'صرنا غرب',
-                        'quotes' =>
-                      [
-                        [
-                            'body' => ' شو يا حلو زعلان منا كيف ومنعرفو قلبك وفي ونظيف ',
-                        ],
+                        'quotes' => [
+                            [
+                                'body' => ' شو يا حلو زعلان منا كيف ومنعرفو قلبك وفي ونظيف ',
+                            ],
 
-                        [
-                            'body' => ' على القليلة مروق ودعنا ',
+                            [
+                                'body' => ' على القليلة مروق ودعنا ',
+                            ],
                         ],
-                      ],
                     ],
                 ],
             ],
 
             [
                 'name' => 'عاصي حلاني  ',
-                'songs' =>
-                 [
+                'songs' => [
                     ['name' => ' جن جنوني ',
-                        'quotes' =>
-                     [   [
+                        'quotes' => [[
                             'body' => '  قالوا جن جنوني يا حياتي لمى تعرفت عليك قالوا بين رموش عيوني شافو النظرة لي بعيني',
                         ],
-                    ],
+                        ],
                     ],
                 ],
             ],
 
         ];
 
-        foreach ($data as $element)
-         {
+        foreach ($data as $element) {
             $singer = Singer::create([
                 'name' => $element['name'],
             ]);
 
-            foreach ($element['songs'] as $songdata) 
-            {
+            foreach ($element['songs'] as $songdata) {
                 $song = $singer->song()->create([
 
                     'name' => $songdata['name'],
                 ]);
-                foreach ($songdata['quotes'] as $quote)
-                 {
+                foreach ($songdata['quotes'] as $quote) {
                     $song->quote()->create([
 
                         'body' => $quote['body'],

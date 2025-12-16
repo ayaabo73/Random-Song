@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quote;
-use App\Models\Song;
 
 class GetRandomSongController extends Controller
 {
     public function __invoke()
     {
-        $quote = Quote:: inRandomOrder()->first();
+        $quote = Quote::inRandomOrder()->first();
 
-        return view('RandomSong', compact('quote'));
+        return view('random-song', compact('quote'));
     }
 }
