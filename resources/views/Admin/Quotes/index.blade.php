@@ -24,16 +24,24 @@
 
    </form> 
  
- <table class="table">
-    <thead>
-  <tr>
+<table class="table">
+ <thead>
+  
    @foreach ($quotes as $quote)
-       
+    <tr>
    
-    <th scope="name">{{ $quote ->body}}</th>
+      <th scope="name">{{ $quote ->body}}</th>
+
+     <td>
+      <a href="{{ route('quote.edit',"$quote->id") }}" class="btn btn-primary btn-sm">تعديل</i></button>
+      <a href="{{ route('quote.destroy',"$quote->id") }}"class="btn btn-primary btn-sm">حذف</i></button>
+      
+ 
+     </td>
+    
     </tr>
 
     
-    @endforeach
+   @endforeach
  </thead>
- </table>
+</table>

@@ -55,8 +55,10 @@ class SongsController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    { $singers = Singer::all();
+       $song=Song::where('id',$id)->first();
+       
+       return view('Admin.Songs.edit-song',compact('song','singers'));
     }
 
     /**
@@ -64,7 +66,14 @@ class SongsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $song=Song::where('id',$id)->first();
+       $song->update([
+
+            'name' => $request->input('name'),
+            'singer_id' => $request->input('singer_id'),
+        ]);
+
+        return 'تم التعديل بنجاح';
     }
 
     /**
@@ -72,6 +81,7 @@ class SongsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $song=Song::where('id',$id)->delete();
+        return redirect()->route('song.index');
     }
 }

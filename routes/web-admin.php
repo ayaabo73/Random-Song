@@ -24,22 +24,22 @@ Route::get('/admin', function () {
 Route::controller(SongsController::class)->group(function () {
     Route::get('/songs', 'index')->name('song.index');
     Route::get('/create/song', 'store')->name('song.store');
-    Route::get('/edit/song')->name('song.edit');
-    Route::patch('/update/song/{id}')->name('song.update');
-    Route::delete('/delet/song')->name('song.destroy');
+    Route::get('/edit/song/{id}','edit')->name('song.edit');
+    Route::post('/update/song/{id}','update')->name('song.update');
+    Route::get('/delet/song/{id}','destroy')->name('song.destroy');
 });
 
 Route::controller(SingersController::class)->group(function () {
     Route::get('/singers', 'index')->name('singer.index');
     Route::get('/create/singer', 'store')->name('singer.store');
-    Route::get('/edit/singer')->name('singer.edit');
-    Route::patch('/update/singer/{id}')->name('singer.update');
-    Route::delete('/delet/singer/{id}')->name('singer.destroy');
+    Route::get('/edit/singer/{id}','edit')->name('singer.edit');
+    Route::post('/update/singer/{id}','update')->name('singer.update');
+    Route::get('/delet/singer/{id}','destroy')->name('singer.destroy');
 });
 Route::controller(QuotesController::class)->group(function () {
     Route::get('/quotes', 'index')->name('quote.index');
     Route::get('/create/quote', 'store')->name('quote.store');
-    Route::get('/edit/quote')->name('quote.edit');
-    Route::patch('/update/quote/{id}')->name('quote.update');
-    Route::delete('/delet/quote/{id}')->name('quote.destroy');
+    Route::get('/edit/quote/{id}','edit')->name('quote.edit');
+    Route::post('/update/quote/{id}','update')->name('quote.update');
+    Route::get('/delet/quote/{id}','destroy')->name('quote.destroy');
 });

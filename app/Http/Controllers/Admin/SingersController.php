@@ -54,7 +54,10 @@ class SingersController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
+        $singer=Singer::where('id',$id)->first();
+        
+        return view('Admin.Singers.edit-singer',compact('singer'));
     }
 
     /**
@@ -62,7 +65,14 @@ class SingersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $singer=Singer::where('id',$id)->first();
+       $singer->update([
+
+            'name' => $request->input('name'),
+        
+        ]);
+
+        return 'تم التعديل بنجاح';
     }
 
     /**
@@ -70,6 +80,7 @@ class SingersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $singer=Singer::where('id',$id)->delete();
+        return redirect()->route('singer.index');
     }
 }

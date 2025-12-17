@@ -56,7 +56,10 @@ class QuotesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $songs = Song::all();
+        $quote=Quote::where('id',$id)->first();
+        
+        return view('Admin.Quotes.edit-quote',compact('quote','songs'));
     }
 
     /**
@@ -64,7 +67,14 @@ class QuotesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $quote=Quote::where('id',$id)->first();
+       $quote->update([
+
+            'body' => $request->input('body'),
+            'song_id' => $request->input('song_id'),
+        ]);
+
+        return 'تم التعديل بنجاح';
     }
 
     /**
@@ -72,6 +82,7 @@ class QuotesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $quote=Quote::where('id',$id)->delete();
+        return redirect()->route('quote.index');
     }
 }
