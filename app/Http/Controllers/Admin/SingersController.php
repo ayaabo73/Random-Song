@@ -15,7 +15,6 @@ class SingersController extends Controller
     public function index()
     {
         $singers = Singer::all();
-
         return view('Admin.Singers.index', compact('singers'));
     }
 
@@ -33,12 +32,9 @@ class SingersController extends Controller
     public function store(SingerRequest $request)
     {
         $singer = Singer::create([
-
-            'name' => $request->input('name'),
-
+         'name' => $request->input('name'),
         ]);
-
-        return 'تمت الاضافة بنجاح';
+        return  redirect()->route('singer.index');
     }
 
     /**
@@ -52,35 +48,30 @@ class SingersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Singer $singer)
     {
-        
-        $singer=Singer::where('id',$id)->first();
-        
         return view('Admin.Singers.edit-singer',compact('singer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,Singer $singer)
     {
-        $singer=Singer::where('id',$id)->first();
-       $singer->update([
 
-            'name' => $request->input('name'),
+        $singer->update([
+          'name' => $request->input('name'),
         
         ]);
-
-        return 'تم التعديل بنجاح';
+        return redirect()->route('singer.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Singer $singer)
     {
-        $singer=Singer::where('id',$id)->delete();
+        $singer->delete();
         return redirect()->route('singer.index');
     }
 }

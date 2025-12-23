@@ -17,7 +17,6 @@ class QuotesController extends Controller
     {
         $quotes = Quote::all();
         $songs = Song::all();
-
         return view('Admin.Quotes.index', compact('quotes', 'songs'));
     }
 
@@ -35,12 +34,10 @@ class QuotesController extends Controller
     public function store(QuoteRequest $request)
     {
         $quote = Quote::create([
-
-            'body' => $request->input('body'),
-            'song_id' => $request->input('song_id'),
+         'body' => $request->input('body'),
+         'song_id' => $request->input('song_id'),
         ]);
-
-        return 'تمت الاضافة بنجاح';
+        return redirect()->route('quote.index');
     }
 
     /**
@@ -54,35 +51,31 @@ class QuotesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Quote $quote)
     {
         $songs = Song::all();
-        $quote=Quote::where('id',$id)->first();
-        
         return view('Admin.Quotes.edit-quote',compact('quote','songs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,Quote $quote)
     {
-        $quote=Quote::where('id',$id)->first();
-       $quote->update([
-
-            'body' => $request->input('body'),
-            'song_id' => $request->input('song_id'),
+       
+        $quote->update([
+         'body' => $request->input('body'),
+         'song_id' => $request->input('song_id'),    
         ]);
-
-        return 'تم التعديل بنجاح';
+        return redirect()->route('quote.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Quote $quote)
     {
-        $quote=Quote::where('id',$id)->delete();
+        $quote->delete();
         return redirect()->route('quote.index');
     }
 }

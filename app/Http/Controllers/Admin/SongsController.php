@@ -17,7 +17,6 @@ class SongsController extends Controller
     {
         $songs = Song::all();
         $singers = Singer::all();
-
         return view('Admin.Songs.index', compact('songs', 'singers'));
     }
 
@@ -34,13 +33,11 @@ class SongsController extends Controller
      */
     public function store(SongRequest $request)
     {
-        $song = song::create([
-
-            'name' => $request->input('name'),
-            'singer_id' => $request->input('singer_id'),
+        $song = song::create( [
+         'name' => $request->input('name'),
+         'singer_id' => $request->input('singer_id'),
         ]);
-
-        return 'تمت الاضافة بنجاح';
+        return redirect()->route('song.index');
     }
 
     /**
@@ -54,34 +51,31 @@ class SongsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    { $singers = Singer::all();
-       $song=Song::where('id',$id)->first();
-       
-       return view('Admin.Songs.edit-song',compact('song','singers'));
+    public function edit(Song $song)
+    { 
+        $singers = Singer::all();
+        return view('Admin.Songs.edit-song',compact('song','singers'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Song $song)
     {
-        $song=Song::where('id',$id)->first();
-       $song->update([
-
-            'name' => $request->input('name'),
-            'singer_id' => $request->input('singer_id'),
+        $song->update([
+         'name' => $request->input('name'),
+         'singer_id' => $request->input('singer_id'),
         ]);
 
-        return 'تم التعديل بنجاح';
+        return redirect()->route('song.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Song $song)
     {
-        $song=Song::where('id',$id)->delete();
+        $song->delete();
         return redirect()->route('song.index');
     }
 }
