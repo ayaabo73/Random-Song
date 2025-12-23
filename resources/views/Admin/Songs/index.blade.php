@@ -2,16 +2,16 @@
   @csrf
   <input type="text"  name="name" placeholder="name"  class="@error('name') is-invalid @enderror">
   @error('name')
-   <div class="alert alert-danger">{{ $message }}</div>
+    <div class="alert alert-danger">{{ $message }}</div>
   @enderror
   <br><br>
   @error('singer_id')
-   <div class="alert alert-danger">{{ $message }}</div>
+    <div class="alert alert-danger">{{ $message }}</div>
   @enderror
   <select class="form-select" aria-label="Default select example" name="singer_id" class="@error('singer_id') is-invalid @enderror"  >
     <option selected >Open this select menu</option>
     @foreach ($singers as $singer )
-     <option value="{{ $singer ->id }}" >{{ $singer ->name }}</option>
+      <option value="{{ $singer ->id }}" >{{ $singer ->name }}</option>
     @endforeach
   </select>
   <br><br>
@@ -25,8 +25,12 @@
       <tr>
         <th scope="name">{{ $song ->name}}</th>
         <td>
-          <a href="{{ route('song.edit',$song->id) }}" class="btn btn-primary btn-sm">تعديل</i></button>
-          <a href="{{ route('song.destroy',$song->id) }}"class="btn btn-primary btn-sm">حذف</i></button>
+          <a href="{{ route('song.edit',$song->id) }}" class="btn btn-primary btn-sm">update</i></button>
+          <form action="{{route('song.destroy',$song->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit">delete</button>
+          </form>
         </td>
       </tr>
     @endforeach

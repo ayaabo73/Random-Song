@@ -24,8 +24,12 @@
       <tr>
         <th scope="name">{{ $quote ->body}}</th>
         <td>
-          <a href="{{ route('quote.edit',"$quote->id") }}" class="btn btn-primary btn-sm">تعديل</i></button>
-          <a href="{{ route('quote.destroy',"$quote->id") }}"class="btn btn-primary btn-sm">حذف</i></button>
+          <a href="{{ route('quote.edit',"$quote->id") }}" class="btn btn-primary btn-sm">update</i></button>
+          <form action="{{route('quote.destroy',$quote->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit">delete</button>
+          </form>  
         </td>
       </tr>
     @endforeach
