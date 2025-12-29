@@ -4,10 +4,8 @@
        <input type="text"  name="body" value="{{$quote->body }}" />    
        <br><br>
        <select class="form-select" aria-label="Default select example" name="song_id" >
-              <option value="{{ $quote->song->id}}">{{ $quote->song->name }}
-              </option>  
               @foreach ($songs as $song )
-              <option value="{{ $song ->id }}" >{{ $song ->name }}</option>
+              <option value="{{ $song ->id }}" @selected(old('song_id',$quote->song->id)== $song ->id )> {{ $song ->name }}</option>
               @endforeach
        </select>   
        <br><br>

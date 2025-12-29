@@ -14,7 +14,7 @@ class SingersController extends Controller
      */
     public function index()
     {
-        $singers = Singer::all();
+        $singers = Singer::paginate(10);
         return view('Admin.Singers.index', compact('singers'));
     }
 
@@ -32,7 +32,7 @@ class SingersController extends Controller
     public function store(SingerRequest $request)
     {
         $singer = Singer::create([
-         'name' => $request->input('name'),
+            'name' => $request->input('name'),
         ]);
         return  redirect()->route('singer.index');
     }
@@ -60,7 +60,7 @@ class SingersController extends Controller
     {
 
         $singer->update([
-          'name' => $request->input('name'),
+            'name' => $request->input('name'),
         
         ]);
         return redirect()->route('singer.index');

@@ -15,7 +15,7 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        $quotes = Quote::all();
+        $quotes = Quote::paginate(10);
         $songs = Song::all();
         return view('Admin.Quotes.index', compact('quotes', 'songs'));
     }
@@ -34,8 +34,8 @@ class QuotesController extends Controller
     public function store(QuoteRequest $request)
     {
         $quote = Quote::create([
-         'body' => $request->input('body'),
-         'song_id' => $request->input('song_id'),
+            'body' => $request->input('body'),
+            'song_id' => $request->input('song_id'),
         ]);
         return redirect()->route('quote.index');
     }
@@ -61,11 +61,10 @@ class QuotesController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request,Quote $quote)
-    {
-       
+    { 
         $quote->update([
-         'body' => $request->input('body'),
-         'song_id' => $request->input('song_id'),    
+            'body' => $request->input('body'),
+            'song_id' => $request->input('song_id'),    
         ]);
         return redirect()->route('quote.index');
     }

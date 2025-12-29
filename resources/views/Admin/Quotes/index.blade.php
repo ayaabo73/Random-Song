@@ -20,9 +20,14 @@
 
 <table class="table">
   <thead>
+    <tr>
+      <th>QUOTES</th>
+    </tr>
+  </thead>
+  <tbody>
     @foreach ($quotes as $quote)
       <tr>
-        <th scope="name">{{ $quote ->body}}</th>
+        <td scope="name">{{ $quote ->body}}</td>
         <td>
           <a href="{{ route('quote.edit',"$quote->id") }}" class="btn btn-primary btn-sm">update</i></button>
           <form action="{{route('quote.destroy',$quote->id) }}" method="post">
@@ -33,5 +38,6 @@
         </td>
       </tr>
     @endforeach
-  </thead>
+  </tbody>
 </table>
+{{ $quotes->links() }}

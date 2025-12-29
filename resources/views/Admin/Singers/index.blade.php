@@ -12,9 +12,14 @@
 
 <table class="table">
   <thead>
+    <tr>
+      <th>SINGERS</th>
+    </tr>
+  </thead>
+  <tbody>
     @foreach ($singers as $singer)
       <tr>
-        <th scope="name">{{ $singer->name}}</th>
+        <td scope="name">{{ $singer->name}}</td>
         <td>
           <a href="{{ route('singer.edit',"$singer->id") }}" class="btn btn-primary btn-sm">update</i></button>
           <form action="{{route('singer.destroy',$singer->id) }}" method="post">
@@ -24,7 +29,7 @@
           </form>
         </td>
       </tr>
-    
     @endforeach
-  </thead>
+  </tbody>
 </table>
+{{ $singers->links() }}

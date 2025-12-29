@@ -21,9 +21,14 @@
 
 <table class="table">
   <thead>
+    <tr>
+      <th>SONGS</th>
+    </tr>
+  </thead>
+  <tbody>
     @foreach ($songs as $song)
       <tr>
-        <th scope="name">{{ $song ->name}}</th>
+        <td scope="name">{{ $song ->name}}</td>
         <td>
           <a href="{{ route('song.edit',$song->id) }}" class="btn btn-primary btn-sm">update</i></button>
           <form action="{{route('song.destroy',$song->id) }}" method="post">
@@ -34,5 +39,6 @@
         </td>
       </tr>
     @endforeach
-  </thead>
+  </tbody>
 </table>
+{{ $songs->links() }}

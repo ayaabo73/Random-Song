@@ -15,7 +15,7 @@ class SongsController extends Controller
      */
     public function index()
     {
-        $songs = Song::all();
+        $songs = Song::paginate(10);
         $singers = Singer::all();
         return view('Admin.Songs.index', compact('songs', 'singers'));
     }
@@ -34,8 +34,8 @@ class SongsController extends Controller
     public function store(SongRequest $request)
     {
         $song = song::create( [
-         'name' => $request->input('name'),
-         'singer_id' => $request->input('singer_id'),
+            'name' => $request->input('name'),
+            'singer_id' => $request->input('singer_id'),
         ]);
         return redirect()->route('song.index');
     }
@@ -63,8 +63,8 @@ class SongsController extends Controller
     public function update(Request $request, Song $song)
     {
         $song->update([
-         'name' => $request->input('name'),
-         'singer_id' => $request->input('singer_id'),
+            'name' => $request->input('name'),
+            'singer_id' => $request->input('singer_id'),
         ]);
 
         return redirect()->route('song.index');
