@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\QuoteRequest;
+use App\Http\Requests\Quote\StoreRequest as QuoteStoreRequest;
+use App\Http\Requests\Quote\UpdateRequest;
+use App\Http\Requests\Song\StoreRequest;
 use App\Models\Quote;
 use App\Models\Song;
-use Illuminate\Http\Request;
 
 class QuotesController extends Controller
 {
@@ -17,7 +18,7 @@ class QuotesController extends Controller
     {
         $quotes = Quote::paginate(10);
         $songs = Song::all();
-        return view('Admin.Quotes.index', compact('quotes', 'songs'));
+        return view('admin.quotes.index', compact('quotes', 'songs'));
     }
 
     /**
@@ -31,7 +32,7 @@ class QuotesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(QuoteRequest $request)
+    public function store(QuoteStoreRequest $request)
     {
         $quote = Quote::create([
             'body' => $request->input('body'),
@@ -54,13 +55,13 @@ class QuotesController extends Controller
     public function edit(Quote $quote)
     {
         $songs = Song::all();
-        return view('Admin.Quotes.edit-quote',compact('quote','songs'));
+        return view('admin.quotes.edit',compact('quote','songs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Quote $quote)
+    public function update(UpdateRequest $request ,Quote $quote)
     { 
         $quote->update([
             'body' => $request->input('body'),

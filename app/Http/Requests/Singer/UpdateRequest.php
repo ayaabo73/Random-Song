@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Singer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuoteRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,7 @@ class QuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'body' => 'required|string',
-            'song_id' => 'required|integer|exists:songs,id',
+            'name' => 'required|string|max:255',
         ];
     }
 }

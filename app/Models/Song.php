@@ -8,18 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Song extends Model
 {
     use HasFactory;
-
     protected $fillable = ['name', 'singer_id'];
-
     public function singer()
     {
-
         return $this->belongsTo(Singer::class);
     }
-
-    public function quote()
+    public function quotes()
     {
-
         return $this->hasMany(Quote::class);
     }
 }

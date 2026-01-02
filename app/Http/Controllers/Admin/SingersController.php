@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SingerRequest;
+use App\Http\Requests\Singer\StoreRequest;
+use App\Http\Requests\Singer\UpdateRequest;
 use App\Models\Singer;
-use Illuminate\Http\Request;
 
 class SingersController extends Controller
 {
@@ -15,7 +14,7 @@ class SingersController extends Controller
     public function index()
     {
         $singers = Singer::paginate(10);
-        return view('Admin.Singers.index', compact('singers'));
+        return view('admin.singers.index', compact('singers'));
     }
 
     /**
@@ -29,7 +28,7 @@ class SingersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SingerRequest $request)
+    public function store(StoreRequest $request)
     {
         $singer = Singer::create([
             'name' => $request->input('name'),
@@ -50,13 +49,13 @@ class SingersController extends Controller
      */
     public function edit(Singer $singer)
     {
-        return view('Admin.Singers.edit-singer',compact('singer'));
+        return view('admin.singers.edit',compact('singer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Singer $singer)
+    public function update(UpdateRequest $request,Singer $singer)
     {
 
         $singer->update([

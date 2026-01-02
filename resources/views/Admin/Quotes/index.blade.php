@@ -29,7 +29,7 @@
       <tr>
         <td scope="name">{{ $quote ->body}}</td>
         <td>
-          <a href="{{ route('quote.edit',"$quote->id") }}" class="btn btn-primary btn-sm">update</i></button>
+          <a href="{{ route('quote.edit',"$quote->id") }}" class="btn btn-primary btn-sm">update</a>
           <form action="{{route('quote.destroy',$quote->id) }}" method="post">
             @csrf
             @method('DELETE')

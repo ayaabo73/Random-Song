@@ -8,12 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Singer extends Model
 {
     use HasFactory;
-
     protected $fillable = ['name'];
-
-    public function song()
+    public function songs()
     {
-
         return $this->hasMany(Song::class);
     }
 }

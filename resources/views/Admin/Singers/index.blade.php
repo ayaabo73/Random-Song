@@ -6,9 +6,7 @@
     @enderror
     <br><br>
     <button type="submit">save</button>
-
 </form>
-
 
 <table class="table">
   <thead>
@@ -21,7 +19,7 @@
       <tr>
         <td scope="name">{{ $singer->name}}</td>
         <td>
-          <a href="{{ route('singer.edit',"$singer->id") }}" class="btn btn-primary btn-sm">update</i></button>
+          <a href="{{ route('singer.edit',"$singer->id") }}" class="btn btn-primary btn-sm">update</a>
           <form action="{{route('singer.destroy',$singer->id) }}" method="post">
             @csrf
             @method('DELETE')

@@ -9,16 +9,12 @@ class FilterBySingerController extends Controller
 {
     public function __invoke(Request $request)
     {
-
-        if ($request->filled('singer_id')) 
+        $song= Song::when( $request->singer_id,function($query,$singer_id)
         {
-            $song = Song::where('singer_id', $request->singer_id)->inRandomOrder()->first();
-        } 
-        else 
-        {
-            $song = Song::inRandomOrder()->first();
-        }
-
+            $query->where('singer_id', $singer_id);
+        })
+        ->inRandomOrder()
+        ->first();
         return view('filter-by-singer', compact('song'));
     }
 }

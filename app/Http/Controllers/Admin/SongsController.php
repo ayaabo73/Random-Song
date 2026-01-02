@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SongRequest;
+use App\Http\Requests\Song\StoreRequest;
+use App\Http\Requests\Song\UpdateRequest;
 use App\Models\Singer;
 use App\Models\Song;
-use Illuminate\Http\Request;
 
 class SongsController extends Controller
 {
@@ -17,7 +17,7 @@ class SongsController extends Controller
     {
         $songs = Song::paginate(10);
         $singers = Singer::all();
-        return view('Admin.Songs.index', compact('songs', 'singers'));
+        return view('admin.songs.index', compact('songs', 'singers'));
     }
 
     /**
@@ -31,7 +31,7 @@ class SongsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SongRequest $request)
+    public function store(StoreRequest $request)
     {
         $song = song::create( [
             'name' => $request->input('name'),
@@ -54,13 +54,13 @@ class SongsController extends Controller
     public function edit(Song $song)
     { 
         $singers = Singer::all();
-        return view('Admin.Songs.edit-song',compact('song','singers'));
+        return view('admin.songs.edit',compact('song','singers'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Song $song)
+    public function update(UpdateRequest $request, Song $song)
     {
         $song->update([
             'name' => $request->input('name'),

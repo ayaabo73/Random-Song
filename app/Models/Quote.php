@@ -8,12 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Quote extends Model
 {
     use HasFactory;
-
     protected $fillable = ['body', 'song_id'];
-
     public function song()
     {
-
         return $this->belongsTo(Song::class);
     }
 }
